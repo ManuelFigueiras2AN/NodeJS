@@ -1,0 +1,31 @@
+<%- include ("templates/cabecera", {tituloWeb: 'Escuderias' }) %>
+
+   <div class="container">
+       <h1>Escuderías</h1>
+       <p>Lista de escuderías participantes en la Fórmula 1:</p>
+       <table class="table table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">País</th>
+      <th scope="col">Campeonatos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if (arrayEscuderias.length > 0) { %>
+        <% arrayEscuderias.forEach(escuderia => {%>
+        <tr>
+            <th scope="row"><%=escuderia.id %></th>
+            <td><%=escuderia.pais %></td>
+            <td><%=escuderia.nombre %></td>
+            <td><%=escuderia.campeonatos %></td>
+        </tr>
+        <% }) %>
+    <% } %>
+  </tbody>
+</table>
+   </div>
+
+
+<%- include ("templates/footer") %>
