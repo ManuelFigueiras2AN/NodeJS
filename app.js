@@ -1,4 +1,5 @@
 require('dotenv').config();
+const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -6,9 +7,10 @@ const mongoose = require('mongoose');
 const dns = require('node:dns');
 dns.setServers(['8.8.8.8', '8.8.4.4']);
 
-
-
 const uri = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cluster0.nrflflh.mongodb.net/${process.env.MONGODB_DATABASE}?retryWrites=true&w=majority`;
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 mongoose.connect(uri).then(() => {
     console.log("Conexión exitosa a la base de datos");

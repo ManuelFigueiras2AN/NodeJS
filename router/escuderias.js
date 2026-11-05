@@ -15,6 +15,23 @@ catch (error) {
 }
 });
 
+router.get('/crearEscuderia', (req, res) => {
+    res.render("crearEscuderia");
+});
+
+router.post('/', async (req, res) => {
+    const body = req.body;
+    
+    try {
+        await Escuderia.create(body);
+        console.log("Escudería creada");
+        res.redirect('/escuderias');
+    } catch (error) {
+        console.error("Error al crear la escudería:", error);
+        res.status(500).send(error);
+        
+    }
+});
 module.exports = router;
 
    /* res.render("escuderias",{
